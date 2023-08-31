@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    private bool sent = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +14,14 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
-            SendIt();
+        if(!sent)
+            if(Input.GetButton("Fire1"))
+                SendIt();
     }
 
     private void SendIt()
     {
         transform.parent = null;
+        sent = true;
     }
 }
