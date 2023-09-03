@@ -6,14 +6,33 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private bool sent = false;
-    private float speed = 1;
+    public GameObject player;
+    [SerializeField, Tooltip("The speed of the ball(s) (Must be non-negative)")] private float speed = 1;
     private Vector3 direction;
+    [SerializeField, Tooltip("The Diameter of the ball(s) (Must be non-negative)")] private float diameter;
 
-    // Update is called once per frame
+    private void OnValidate()
+    {
+        if (speed < 0)
+        {
+            speed = 0;
+            Debug.LogWarning("Speed of the ball must be non-negative!", this);
+        }
+        if (diameter < 0)
+        {
+            diameter = 0;
+            Debug.LogWarning("Diameter of the ball must be non-negative!", this);
+        }
+
+        FixBallTransformValues();
+    }
+
+
     void Update()
     {
         if (!sent)
         {
+            transform.position = new Vector3(player.transform.position.x, transform.position.y);
             if(Input.GetButton("Fire1"))
                 SendIt();
         }
@@ -32,6 +51,22 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        direction = Vector3.Reflect(direction.normalized, col.contacts[0].normal);
+        if (col.gameObject.name == "Player")
+        {
+            //Potentiellt tweeka denna :)
+            var newDir = transform.position - player.transform.position;
+            newDir = newDir.normalized;
+            direction = newDir;
+        }
+        else
+        {
+            direction = Vector3.Reflect(direction.normalized, col.contacts[0].normal);
+        }
+    }
+
+    public void FixBallTransformValues()
+    {
+        transform.localScale = new Vector3(diameter, diameter);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + player.transform.localScale.y / 2 + diameter / 2);
     }
 }
