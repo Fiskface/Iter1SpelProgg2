@@ -53,15 +53,22 @@ public class Ball : MonoBehaviour
     {
         if (col.gameObject.name == "Player")
         {
-            //Potentiellt tweeka denna :)
             var newDir = transform.position - player.transform.position;
+            newDir += new Vector3(0, 0.15f);
             newDir = newDir.normalized;
             direction = newDir;
+            return;
         }
-        else
+        
+        if (col.gameObject.CompareTag("Brick"))
         {
-            direction = Vector3.Reflect(direction.normalized, col.contacts[0].normal);
+            if (col.gameObject.TryGetComponent<Brick>(out Brick brick))
+            {
+                brick.TakeDamage(1);
+            }
         }
+        
+        direction = Vector3.Reflect(direction.normalized, col.contacts[0].normal);
     }
 
     public void FixBallTransformValues()

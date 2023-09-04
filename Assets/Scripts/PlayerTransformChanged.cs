@@ -5,7 +5,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PlayerTransformChanged : MonoBehaviour
 {
-    // Update is called once per frame
+    void Awake()
+    {
+        if(Application.isPlaying)
+            Destroy(this);
+    }
+
     void Update()
     {
         if (Application.isEditor && !Application.isPlaying)
