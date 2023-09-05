@@ -5,6 +5,7 @@ using UnityEngine;
 public class Brick : MonoBehaviour
 {
     [SerializeField, Tooltip("How much damage (how many hits) it takes for the brick to be destroyed")] private int health = 1;
+    [SerializeField, Tooltip("If the block can be destroyed or not")] private bool Breakable = true;
     
     
     void Update()
@@ -14,8 +15,11 @@ public class Brick : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        CheckIfDead();
+        if (Breakable)
+        {
+            health -= damage;
+            CheckIfDead();
+        }
     }
 
     private void CheckIfDead()

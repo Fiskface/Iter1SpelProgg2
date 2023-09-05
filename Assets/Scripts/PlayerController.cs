@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var position = transform.position;
         var newX = position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
