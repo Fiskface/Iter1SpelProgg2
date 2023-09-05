@@ -8,15 +8,16 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private bool sent = false;
-    public GameObject player;
+    private GameObject player = null;
     [SerializeField, Tooltip("The speed of the ball(s) (Must be non-negative)")] private float speed = 1;
-    private Vector3 direction;
-    [SerializeField, Tooltip("The Diameter of the ball(s) (Must be non-negative)")] private float diameter;
+    [SerializeField, Tooltip("The damage of the ball(s) (Must be non-negative)")] private int damage = 1;
+    [SerializeField, Tooltip("The diameter of the ball(s) (Must be non-negative)")] private float diameter;
     public Rigidbody2D rb;
 
     private void Start()
     {
         rb.velocity = Vector2.zero;
+        player = GameObject.FindWithTag("Player");
     }
 
     private void OnValidate()
@@ -30,6 +31,11 @@ public class Ball : MonoBehaviour
         {
             diameter = 0;
             Debug.LogWarning("Diameter of the ball must be non-negative!", this);
+        }
+        if (damage < 0)
+        {
+            damage = 0;
+            Debug.LogWarning("Damage of the ball must be non-negative!", this);
         }
 
         FixBallTransformValues();
@@ -47,16 +53,10 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        //if(sent)
-        //    transform.position += speed * Time.deltaTime * direction;
-    }
-
     private void SendIt()
     {
         sent = true;
-        direction = new Vector3(Random.Range(-2f,2f), Random.Range(0.5f,2f), 0).normalized;
+        Vector3 direction = new Vector3(Random.Range(-2f,2f), Random.Range(0.5f,2f), 0).normalized;
         rb.velocity = direction * speed;
     }
 
@@ -79,13 +79,16 @@ public class Ball : MonoBehaviour
                 brick.TakeDamage(1);
             }
         }
-        
-        //direction = Vector3.Reflect(direction.normalized, col.contacts[0].normal);
     }
 
     public void FixBallTransformValues()
     {
-        transform.localScale = new Vector3(diameter, diameter);
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + player.transform.localScale.y / 2 + diameter / 2);
+        player = GameObject.FindWithTag("Player");
+        if(player != null)
+        {
+            transform.localScale = new Vector3(diameter, diameter);
+            transform.position = new Vector3(player.transform.position.x,
+                player.transform.position.y + player.GetComponent<SpriteRenderer>().sprite.bounds.extents.y + diameter / 2);
+        }
     }
 }

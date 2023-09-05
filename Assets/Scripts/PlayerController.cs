@@ -10,17 +10,21 @@ public class PlayerController : MonoBehaviour
     public GameObject ball;
     public GameObject leftWall;
     public GameObject rightWall;
+    public SpriteRenderer sr;
+    public BoxCollider2D bc;
 
     private float minX;
     private float maxX;
     
     private void OnValidate()
     {
-        ball.GetComponent<Ball>().FixBallTransformValues();
+        bc.size = sr.size;
     }
 
     private void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
+        bc = GetComponent<BoxCollider2D>();
         RecalculateMinMaxPos();
     }
 
@@ -37,8 +41,9 @@ public class PlayerController : MonoBehaviour
 
     public void RecalculateMinMaxPos()
     {
-        var lossyScale = transform.lossyScale;
-        minX = leftWall.transform.position.x + leftWall.transform.localScale.x / 2 + lossyScale.x / 2;
-        maxX = rightWall.transform.position.x - rightWall.transform.localScale.x / 2 - lossyScale.x / 2;
+        var extents = sr.sprite.bounds.extents;
+        minX = leftWall.transform.position.x + leftWall.transform.localScale.x / 2 + extents.x;
+        maxX = rightWall.transform.position.x - rightWall.transform.localScale.x / 2 - extents.x;
+        bc.size = sr.size;
     }
 }

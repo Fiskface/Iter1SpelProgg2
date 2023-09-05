@@ -17,8 +17,11 @@ public class PlayerTransformChanged : MonoBehaviour
         {
             if (transform.hasChanged)
             {
-                gameObject.GetComponent<PlayerController>().ball.GetComponent<Ball>().FixBallTransformValues();
+                GameObject ball = GameObject.FindWithTag("Ball");
+                if (ball != null)
+                   ball.GetComponent<Ball>().FixBallTransformValues();
             }
         }
     }
 }
+
