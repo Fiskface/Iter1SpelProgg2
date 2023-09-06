@@ -10,7 +10,7 @@ public class Ball : MonoBehaviour
     private bool sent = false;
     private GameObject player = null;
     [SerializeField, Tooltip("The speed of the ball(s) (Must be non-negative)")] private float speed = 1;
-    [SerializeField, Tooltip("The damage of the ball(s) (Must be non-negative)")] private int damage = 1;
+    [SerializeField, Tooltip("The damage of the ball(s)")] private int damage = 1;
     [SerializeField, Tooltip("The diameter of the ball(s) (Must be non-negative)")] private float diameter;
     public Rigidbody2D rb;
 
@@ -31,11 +31,6 @@ public class Ball : MonoBehaviour
         {
             diameter = 0;
             Debug.LogWarning("Diameter of the ball must be non-negative!", this);
-        }
-        if (damage < 0)
-        {
-            damage = 0;
-            Debug.LogWarning("Damage of the ball must be non-negative!", this);
         }
 
         FixBallTransformValues();
@@ -62,7 +57,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "Player")
+        if (col.gameObject.CompareTag("Player"))
         {
             var newDir = transform.position - player.transform.position;
             newDir += new Vector3(0, 0.15f);
@@ -76,7 +71,7 @@ public class Ball : MonoBehaviour
         {
             if (col.gameObject.TryGetComponent<Brick>(out Brick brick))
             {
-                brick.TakeDamage(1);
+                brick.TakeDamage(damage);
             }
         }
     }
