@@ -1,0 +1,10 @@
+Score
+Ladda nya scener
+Player health
+Powerups
+Bollen resettas. 
+
+Om lat: Kolla om ball tagg och brick tagg finns kvar i scenen för att se om det finns nån kvar.
+Om inte lat: Gör events för varje gång brick går sönder och boll dör. 
+
+Powerups måste hantera prefabs såsom boll prefabs och vara prefab varianter av sig själva.
