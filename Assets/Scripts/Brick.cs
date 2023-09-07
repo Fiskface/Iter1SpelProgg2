@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Brick : MonoBehaviour
 {
     [SerializeField, Tooltip("How much damage (how many hits) it takes for the brick to be destroyed")] private int health = 1;
+    [SerializeField, Tooltip("How much score the brick gives when destroyed")] private int scoreValue = 10;
     [SerializeField, Tooltip("If the block can be destroyed or not")] private bool Breakable = true;
     private Animator animator;
 

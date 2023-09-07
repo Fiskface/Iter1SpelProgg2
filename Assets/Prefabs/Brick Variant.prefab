@@ -71,5 +71,9 @@ PrefabInstance:
       propertyPath: health
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4644230024413822348, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
+      propertyPath: scoreValue
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
