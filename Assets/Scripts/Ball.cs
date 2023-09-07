@@ -13,11 +13,14 @@ public class Ball : MonoBehaviour
     [SerializeField, Tooltip("The damage of the ball(s)")] private int damage = 1;
     [SerializeField, Tooltip("The diameter of the ball(s) (Must be non-negative)")] private float diameter;
     public Rigidbody2D rb;
+    private BallCounter ballcounter;
 
     private void Start()
     {
         rb.velocity = Vector2.zero;
         player = GameObject.FindWithTag("Player");
+        ballcounter = GameObject.Find("SceneManager").GetComponent<BallCounter>();
+        ballcounter.AddBall(this);
     }
 
     private void OnValidate()
@@ -45,6 +48,11 @@ public class Ball : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x, transform.position.y);
             if(Input.GetButton("Fire1"))
                 SendIt();
+        }
+
+        if (transform.position.y <= -5)
+        {
+            KillBall();
         }
     }
 
@@ -85,5 +93,11 @@ public class Ball : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x,
                 player.transform.position.y + player.GetComponent<SpriteRenderer>().sprite.bounds.extents.y + diameter / 2);
         }
+    }
+
+    private void KillBall()
+    {
+        ballcounter.RemoveBall(this);
+        Destroy(gameObject);
     }
 }

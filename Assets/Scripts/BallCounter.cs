@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,30 @@ using UnityEngine;
 public class BallCounter : MonoBehaviour
 {
     private List<Ball> ballsActive;
-    void Start()
+    [SerializeField] private GameObject defaultBall;
+
+    private void Start()
     {
         ballsActive = new List<Ball>();
-        EventManager.ballDeathEvent += removeBall;
-        EventManager.ballSpawnedEvent += addBall;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void removeBall(Ball ball)
+    public void RemoveBall(Ball ball)
     {
         ballsActive.Remove(ball);
+        if (ballsActive.Count == 0)
+        {
+            SpawnBall();
+        }
     }
 
-    private void addBall(Ball ball)
+    public void AddBall(Ball ball)
     {
         ballsActive.Add(ball);
+    }
+
+    private void SpawnBall()
+    {
+        var newBall = Instantiate(defaultBall);
+        newBall.GetComponent<Ball>().FixBallTransformValues();
     }
 }
