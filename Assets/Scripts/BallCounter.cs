@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class BallCounter : MonoBehaviour
 {
-    private List<Ball> ballsActive;
+    private List<GameObject> ballsActive;
     [SerializeField] private GameObject defaultBall;
 
-    private void Start()
+    private void Awake()
     {
-        ballsActive = new List<Ball>();
+        ballsActive = new List<GameObject>();
     }
 
-    public void RemoveBall(Ball ball)
+    public void RemoveBall(GameObject ball)
     {
         ballsActive.Remove(ball);
         if (ballsActive.Count == 0)
@@ -22,7 +22,7 @@ public class BallCounter : MonoBehaviour
         }
     }
 
-    public void AddBall(Ball ball)
+    public void AddBall(GameObject ball)
     {
         ballsActive.Add(ball);
     }

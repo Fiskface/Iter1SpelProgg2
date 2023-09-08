@@ -41,9 +41,9 @@ public class PlayerController : MonoBehaviour
 
     public void RecalculateMinMaxPos()
     {
-        var extents = sr.sprite.bounds.extents;
-        minX = leftWall.transform.position.x + leftWall.transform.localScale.x / 2 + extents.x;
-        maxX = rightWall.transform.position.x - rightWall.transform.localScale.x / 2 - extents.x;
-        bc.size = sr.size;
+        var size = sr.size;
+        minX = leftWall.transform.position.x + leftWall.transform.localScale.x / 2 + size.x / 2;
+        maxX = rightWall.transform.position.x - rightWall.transform.localScale.x / 2 - size.x / 2;
+        bc.size = size;
     }
 }

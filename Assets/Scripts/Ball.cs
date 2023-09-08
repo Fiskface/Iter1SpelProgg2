@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector2.zero;
         player = GameObject.FindWithTag("Player");
         ballcounter = GameObject.Find("SceneManager").GetComponent<BallCounter>();
-        ballcounter.AddBall(this);
+        ballcounter.AddBall(gameObject);
     }
 
     private void OnValidate()
@@ -97,7 +97,7 @@ public class Ball : MonoBehaviour
 
     private void KillBall()
     {
-        ballcounter.RemoveBall(this);
+        ballcounter.RemoveBall(gameObject);
         Destroy(gameObject);
     }
 }
