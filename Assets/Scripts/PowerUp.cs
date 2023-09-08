@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -31,4 +32,5 @@ public class PowerUp : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
