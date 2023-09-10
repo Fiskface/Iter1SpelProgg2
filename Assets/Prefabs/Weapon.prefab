@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aliveTime: 10
-  shootCooldown: 10
+  shootCooldown: 1
 --- !u!1001 &2556354253082944397
 PrefabInstance:
   m_ObjectHideFlags: 0

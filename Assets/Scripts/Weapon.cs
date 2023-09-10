@@ -7,7 +7,10 @@ public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField, Tooltip("How many seconds the powerup lives")] private float aliveTime = 10f;
-    [SerializeField, Tooltip("How many seconds the powerup lives")] private float shootCooldown = 10f;
+    [SerializeField, Tooltip("How many seconds the powerup lives")] private float shootCooldown = 1f;
+    private float currentCooldown = 0;
+
+    private List<Gun> gunComponents;
 
     private void OnValidate()
     {
@@ -18,11 +21,20 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        gunComponents = new List<Gun>();
+        foreach (var gun in gameObject.GetComponentsInChildren<Gun>())
+        {
+            gunComponents.Add(gun);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         aliveTime -= Time.deltaTime;
-        shootCooldown -= Time.deltaTime;
+        currentCooldown -= Time.deltaTime;
         if (aliveTime <= 0)
         {
             Destroy(gameObject);
@@ -30,9 +42,13 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            foreach (var gun in GetComponentsInChildren<Gun>())
+            if(currentCooldown <= 0)
             {
-                gun.Shoot();
+                currentCooldown = shootCooldown;
+                foreach (var gun in gunComponents)
+                {
+                    gun.Shoot();
+                }
             }
         }
     }
