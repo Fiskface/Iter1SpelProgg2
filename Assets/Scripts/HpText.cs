@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ScoreText : MonoBehaviour
+public class HpText : MonoBehaviour
 {
     private TextMeshProUGUI TMP;
-    // Start is called before the first frame update
+    
     void Start()
     {
         TMP = GetComponent<TextMeshProUGUI>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        TMP.text = $"Score: {StaticValues.score}";
+        TMP.text = $"HP: {StaticValues.lives}";
     }
 }

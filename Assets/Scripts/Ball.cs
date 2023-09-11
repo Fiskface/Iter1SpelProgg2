@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        rb.velocity = Vector2.zero;
         player = GameObject.FindWithTag("Player");
         ballcounter = GameObject.Find("SceneManager").GetComponent<BallCounter>();
         ballcounter.AddBall(gameObject);
@@ -56,7 +55,7 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void SendIt()
+    public void SendIt()
     {
         sent = true;
         Vector3 direction = new Vector3(Random.Range(-2f,2f), Random.Range(0.5f,2f), 0).normalized;
@@ -82,6 +81,15 @@ public class Ball : MonoBehaviour
                 brick.TakeDamage(damage);
             }
         }
+
+        if (Math.Abs(rb.velocity.x) < 0.02f)
+        {
+            rb.velocity = new Vector2(0.02f, rb.velocity.y);
+        }
+        if (Math.Abs(rb.velocity.y) < 0.02f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -0.02f);
+        }
     }
 
     public void FixBallTransformValues()
@@ -99,5 +107,10 @@ public class Ball : MonoBehaviour
     {
         ballcounter.RemoveBall(gameObject);
         Destroy(gameObject);
+    }
+
+    public void SpawnedWithPowerUp()
+    {
+        sent = true;
     }
 }

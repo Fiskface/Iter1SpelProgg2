@@ -20,4 +20,10 @@ public class Gun : MonoBehaviour
     {
         Instantiate(bullet, transform.position, transform.rotation);
     }
+    
+    public void OnDrawGizmosSelected(){
+        Gizmos.color = Color.white;
+        Vector3 position = transform.TransformPoint(0.5f * Vector3.up);
+        Gizmos.DrawSphere(position, 0.025f);
+    }
 }

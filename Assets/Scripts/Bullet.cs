@@ -22,12 +22,15 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > 6)
+        {
+            Destroy(gameObject);
+        }
         transform.position += speed * Time.deltaTime * transform.up;
     }
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hej");
         if (other.CompareTag("Brick"))
         {
             other.GetComponent<Brick>().TakeDamage(damage);

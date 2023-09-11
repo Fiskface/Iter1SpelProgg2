@@ -10,7 +10,14 @@ public class GunPU : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(weapon,other.transform.position,quaternion.identity,other.transform);
+            if(other.transform.childCount == 0)
+            {
+                Instantiate(weapon, other.transform.position, quaternion.identity, other.transform);
+            }
+            else
+            {
+                other.transform.GetChild(0).GetComponent<Weapon>().RefreshTime();
+            }
             Destroy(gameObject);
         }
     }

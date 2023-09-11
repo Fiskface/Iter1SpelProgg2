@@ -6,5 +6,5 @@ public static class StaticValues
 {
     
     public static int score = 0;
-    public static int lives;
+    public static int lives = 3;
 }

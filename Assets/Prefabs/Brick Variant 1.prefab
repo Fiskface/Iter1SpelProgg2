@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3217207883115074787
+--- !u!1001 &381301097286919515
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,24 +8,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 409837156618032746, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
-      propertyPath: m_Color.a
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 409837156618032746, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
-      propertyPath: m_Color.b
-      value: 0.47058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 409837156618032746, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
       propertyPath: m_Color.g
-      value: 0.47058824
+      value: 0.36031786
       objectReference: {fileID: 0}
     - target: {fileID: 409837156618032746, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
       propertyPath: m_Color.r
-      value: 0.47058824
+      value: 0.18431371
       objectReference: {fileID: 0}
     - target: {fileID: 4644230024413822344, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
       propertyPath: m_Name
-      value: Brick Unbreakable
+      value: Brick Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 4644230024413822345, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
       propertyPath: m_RootOrder
@@ -72,12 +68,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4644230024413822348, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
-      propertyPath: Breakable
-      value: 0
+      propertyPath: health
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4644230024413822348, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
-      propertyPath: breakable
-      value: 0
+      propertyPath: scoreValue
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad2d0f7597caadf418f81c334a1a8891, type: 3}
