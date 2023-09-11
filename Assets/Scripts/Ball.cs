@@ -13,13 +13,15 @@ public class Ball : MonoBehaviour
     [SerializeField, Tooltip("The damage of the ball(s)")] private int damage = 1;
     [SerializeField, Tooltip("The diameter of the ball(s) (Must be non-negative)")] private float diameter;
     public Rigidbody2D rb;
-    private BallCounter ballcounter;
+    private BallCounter ballCounter;
+    private AudioSource audioSource;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
-        ballcounter = GameObject.Find("SceneManager").GetComponent<BallCounter>();
-        ballcounter.AddBall(gameObject);
+        ballCounter = GameObject.Find("SceneManager").GetComponent<BallCounter>();
+        ballCounter.AddBall(gameObject);
     }
 
     private void OnValidate()
@@ -53,6 +55,18 @@ public class Ball : MonoBehaviour
         {
             KillBall();
         }
+        
+        if (Math.Abs(rb.velocity.x) < 0.05f)
+        {
+            if(Random.Range(1,2) == 1)
+                rb.velocity = new Vector2(0.05f, rb.velocity.y).normalized * speed;
+            else
+                rb.velocity = new Vector2(-0.05f, rb.velocity.y).normalized * speed;
+        }
+        if (Math.Abs(rb.velocity.y) < 0.05f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -0.05f).normalized * speed;
+        }
     }
 
     public void SendIt()
@@ -70,8 +84,6 @@ public class Ball : MonoBehaviour
             newDir += new Vector3(0, 0.15f);
             newDir = newDir.normalized;
             rb.velocity = newDir * speed;
-            
-            return;
         }
         
         if (col.gameObject.CompareTag("Brick"))
@@ -81,15 +93,8 @@ public class Ball : MonoBehaviour
                 brick.TakeDamage(damage);
             }
         }
-
-        if (Math.Abs(rb.velocity.x) < 0.02f)
-        {
-            rb.velocity = new Vector2(0.02f, rb.velocity.y);
-        }
-        if (Math.Abs(rb.velocity.y) < 0.02f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -0.02f);
-        }
+        
+        audioSource.Play();
     }
 
     public void FixBallTransformValues()
@@ -105,7 +110,7 @@ public class Ball : MonoBehaviour
 
     private void KillBall()
     {
-        ballcounter.RemoveBall(gameObject);
+        ballCounter.RemoveBall(gameObject);
         Destroy(gameObject);
     }
 

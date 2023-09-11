@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8850952162131552843}
-  - component: {fileID: 8850952162131552842}
   - component: {fileID: 8850952162131552840}
+  - component: {fileID: 8850952162131552842}
   - component: {fileID: 8850952162131552841}
   - component: {fileID: 8850952162131552846}
   - component: {fileID: 8850952162131552847}
@@ -36,6 +36,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8850952162131552840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850952162131552837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6778a9ec77edbb499d8fac3e03c8310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  ball: {fileID: 3236077846976714460, guid: a5e3609e16010ae43bd0477721753b3f, type: 3}
+  leftWall: {fileID: 5520926778690406050, guid: e7dda13333600fd4c9d32ce0e37abdf4, type: 3}
+  rightWall: {fileID: 6223292791435307372, guid: f3d4fb7632e857c48961f3872f96a12d, type: 3}
+  sr: {fileID: 8850952162131552842}
+  bc: {fileID: 8850952162131552841}
 --- !u!212 &8850952162131552842
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,24 +106,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8850952162131552840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8850952162131552837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6778a9ec77edbb499d8fac3e03c8310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  ball: {fileID: 3236077846976714460, guid: a5e3609e16010ae43bd0477721753b3f, type: 3}
-  leftWall: {fileID: 5520926778690406050, guid: e7dda13333600fd4c9d32ce0e37abdf4, type: 3}
-  rightWall: {fileID: 6223292791435307372, guid: f3d4fb7632e857c48961f3872f96a12d, type: 3}
-  sr: {fileID: 8850952162131552842}
-  bc: {fileID: 8850952162131552841}
 --- !u!61 &8850952162131552841
 BoxCollider2D:
   m_ObjectHideFlags: 0

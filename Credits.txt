@@ -1,2 +1,4 @@
-https://screamingbrainstudios.itch.io/tinybreakoutpack: (cc0)
-https://opengameart.org/content/arkanoid-assets: (cc0)
+https://screamingbrainstudios.itch.io/tinybreakoutpack: Boll och paddel sprites (cc0)
+https://opengameart.org/content/arkanoid-assets: vapen och powerup sprites (cc0)
+https://www.youtube.com/watch?v=BQGTdRhGmE4: Screenshake kodtutorial
+https://freesound.org/people/MATRIXXX_/sounds/459156/: Sound effect (cc0)
