@@ -138,8 +138,8 @@ MonoBehaviour:
   breakable: 1
   powerUpProbability: 5
   PowerUps:
-  - {fileID: 7929931876458718915, guid: 355e9efab3c2ea849abfbaee23f993d0, type: 3}
   - {fileID: 217651508994959105, guid: dbac903fda4a8cb4795bddbf4ac31e03, type: 3}
+  - {fileID: 7929931876458718915, guid: 355e9efab3c2ea849abfbaee23f993d0, type: 3}
 --- !u!212 &4644230024413822350
 SpriteRenderer:
   m_ObjectHideFlags: 0

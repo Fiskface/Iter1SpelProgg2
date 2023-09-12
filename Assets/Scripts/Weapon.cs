@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField, Tooltip("How many seconds the powerup lives")] private float aliveTime = 10f;
-    [SerializeField, Tooltip("How many seconds the powerup lives")] private float shootCooldown = 1f;
+    [SerializeField, Tooltip("How long you have to wait between shots")] private float shootCooldown = 1f;
     private float currentAliveTime = 0;
     private float currentCooldown = 0;
 
@@ -72,7 +72,8 @@ public class Weapon : MonoBehaviour
         currentAliveTime = aliveTime;
     }
     
-    public void OnDrawGizmos(){
+    public void OnDrawGizmos()
+    {
         foreach (var gun in GetComponentsInChildren<Gun>())
         {
             Vector3 from = gun.transform.TransformPoint(Vector3.zero);
@@ -80,6 +81,5 @@ public class Weapon : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawLine(from, to);
         }
-        
     }
 }

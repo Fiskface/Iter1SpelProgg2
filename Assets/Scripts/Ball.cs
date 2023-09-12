@@ -46,7 +46,8 @@ public class Ball : MonoBehaviour
         if (!sent)
         {
             rb.velocity = Vector2.zero;
-            transform.position = new Vector3(player.transform.position.x, transform.position.y);
+            transform.position = new Vector3(player.transform.position.x,
+                player.transform.position.y + player.GetComponent<SpriteRenderer>().sprite.bounds.extents.y + diameter / 2 + 0.05f);
             if(Input.GetButton("Fire1"))
                 SendIt();
         }
@@ -102,9 +103,10 @@ public class Ball : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         if(player != null)
         {
+            rb.velocity = Vector2.zero;
             transform.localScale = new Vector3(diameter, diameter);
             transform.position = new Vector3(player.transform.position.x,
-                player.transform.position.y + player.GetComponent<SpriteRenderer>().sprite.bounds.extents.y + diameter / 2);
+                player.transform.position.y + player.GetComponent<SpriteRenderer>().sprite.bounds.extents.y + diameter / 2 + 0.05f);
         }
     }
 
@@ -113,9 +115,5 @@ public class Ball : MonoBehaviour
         ballCounter.RemoveBall(gameObject);
         Destroy(gameObject);
     }
-
-    public void SpawnedWithPowerUp()
-    {
-        sent = true;
-    }
+    
 }
